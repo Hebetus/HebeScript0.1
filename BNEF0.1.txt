@@ -1,0 +1,67 @@
+<käännösyksikkö> ::= { <asetuslause> | <evaluaatio> | <toistosilmukka> | <tulostus> | päätä_ohjelma } erotin
+                        | { <asetuslause> | <evaluaatio> | <toistosilmukka> | <tulostus> | päätä_ohjelma } erotin <käännösyksikkö>
+
+<asetuslause> ::= muuttujanimi asetus <muuttujanarvo>
+                    | muuttujanimi plus muuttujanimi
+                    | muuttujanimi miinus muuttujanimi
+                    | muuttujanimi kertaa muuttujanimi
+                    | muuttujanimi jaettuna muuttujanimi
+
+<muuttujanarvo> ::= luku
+                    | desimaaliluku
+                    | symboli
+                    | merkkijono
+                    | totuusarvo
+
+<evaluaatio> ::= jos <evaluaatiolauseke> niin <käännösyksikkö>
+                | jos <evaluaatiolauseke> tai <evaluaatio>
+                | jos <evaluaatiolauseke> ja <evaluaatio>
+                | ei <evaluaatio>
+
+
+<evaluaatiolauseke> ::= evaluaatio_auki muuttujanimi suurempi_kuin muuttujanimi evaluaatio_kiinni
+                        | evaluaatio_auki muuttujanimi pienempi_kuin muuttujanimi evaluaatio_kiinni
+                        | evaluaatio_auki muuttujanimi yhtäsuuri_kuin muuttujanimi evaluaatio_kiinni
+
+<toistosilmukka> ::= niinkauankuin <evaluaatio> seuraus <käännösyksikkö> päätä_silmukka
+
+<tulostus> ::= tulosta_päätteeseen tulosta_auki muuttujanimi tulosta_kiinni
+
+Terminaalisymbolit:                     Tokenit:
+    muuttujanimi                            [a-zA-Z_]\w*
+    asetus                                  0
+
+    erotin                                  ;
+
+    luku                                    [0-9]\w*
+    desimaaliluku                           [0-9]\+(\.[0-9]+)?
+    symboli                                 \'[a-öA-Ö]\w\'
+    merkkijono                              \"\[a-zA-Z]\w*\"
+    totuusarvo                              tosi | epätosi
+
+    plus                                    +
+    miinus                                  -
+    kertaa                                  *
+    jaettuna                                /
+
+    evaluaatio_auki                         (
+    evaluaatio_kiinni                       )
+    jos                                     ?
+    niin                                    ~
+    tai                                     |
+    ja                                      &
+    ei                                      !
+
+    pienempi_kuin                           >
+    suurempi_kuin                           <
+    yhtäsuuri_kuin                          ==
+
+    niinkauankuin                           niinkauankuin
+    seuraus                                 :
+    päätä_silmukka                          päätä_silmukka
+
+    tulosta_päätteeseen                     tulosta_päätteeseen
+    tulosta_auki                            [
+    tulosta_kiinni                          ]
+
+    päätä_ohjelma                           päätä_ohjelma
