@@ -1,0 +1,3 @@
+Tokenien generointi tekstisyötteestä (joko .txt-tiedostona tai komentoriviparametrina)
+Abstraktin syntaksipuun generointi token-listasta
+Python-koodin generointi abstraktin syntaksipuun pohjalta
