@@ -2,14 +2,12 @@
                         | { <asetuslause> | <evaluaatio> | <toistosilmukka> | <tulostus> | päätä_ohjelma } erotin <käännösyksikkö>
 
 <asetuslause> ::= muuttujanimi asetus <muuttujanarvo>
-                    | muuttujanimi plus muuttujanimi
-                    | muuttujanimi miinus muuttujanimi
-                    | muuttujanimi kertaa muuttujanimi
-                    | muuttujanimi jaettuna muuttujanimi
+                    | muuttujanimi asetus muuttujanimi plus muuttujanimi
+                    | muuttujanimi asetus muuttujanimi miinus muuttujanimi
+                    | muuttujanimi asetus muuttujanimi kertaa muuttujanimi
+                    | muuttujanimi asetus muuttujanimi jaettuna muuttujanimi
 
 <muuttujanarvo> ::= luku
-                    | desimaaliluku
-                    | symboli
                     | merkkijono
                     | totuusarvo
 
@@ -27,17 +25,15 @@
 
 <tulostus> ::= tulosta_päätteeseen tulosta_auki muuttujanimi tulosta_kiinni
 
-Terminaalisymbolit:                     Tokenit:
-    muuttujanimi                            [a-zA-Z_]\w*
-    asetus                                  0
+Terminaalisymbolit:                     Lekseemit/tokenit:
+    muuttujanimi                            [Mikä tahansa jono pieniä ja isoja kirjaimia a-z tai numeroita 0-9 tai _]
+    asetus                                  =
 
     erotin                                  ;
 
-    luku                                    [0-9]\w*
-    desimaaliluku                           [0-9]\+(\.[0-9]+)?
-    symboli                                 \'[a-öA-Ö]\w\'
-    merkkijono                              \"\[a-zA-Z]\w*\"
-    totuusarvo                              tosi | epätosi
+    luku                                    [Mikä tahansa jono numeroita 0-9, mahdollisesti sisältäen desimaalierottimen '.', jonka jälkeen mikä tahansa jono numeroita 0-9]
+    merkkijono                              [Mikä tahansa jono merkkejä, alkaen ja päättyen "-merkkiin]
+    totuusarvo                              ^ | $
 
     plus                                    +
     miinus                                  -
@@ -56,12 +52,18 @@ Terminaalisymbolit:                     Tokenit:
     suurempi_kuin                           <
     yhtäsuuri_kuin                          ==
 
-    niinkauankuin                           niinkauankuin
+    niinkauankuin                           @
     seuraus                                 :
-    päätä_silmukka                          päätä_silmukka
+    päätä_silmukka                          #
 
-    tulosta_päätteeseen                     tulosta_päätteeseen
+    tulosta_päätteeseen                     ¤
     tulosta_auki                            [
     tulosta_kiinni                          ]
 
-    päätä_ohjelma                           päätä_ohjelma
+    !HUOM! KIELI EI TUE KOMMENTOINTIA KAHDELLA VINOVIIVALLA (//) TAI MUUTENKAAN !HUOM!
+    !HUOM! MUUTTUJIEN NIMEÄMISEEN EI VOI KÄYTTÄÄ ÄÄKKÖSIÄ !HUOM!
+
+    Kääntäjä olettaa lähdekoodin päättyvän tekstitiedoston loppuessa, ei siis
+    vaadi ohjelman päättävää terminaalisymbolia
+
+    Kaikki lausekkeet, paitsi tulostus ja negaatio, jotka ovat unaarisia, ovat binäärisiä

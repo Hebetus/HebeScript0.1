@@ -1,0 +1,6 @@
+ykkonen = 1436;
+kakkonen = 231.4512;
+kolmas = ykkonen + kakkonen;
+¤[komas];
+neljas == kolmas;
+totuusmuuttuja = ^;

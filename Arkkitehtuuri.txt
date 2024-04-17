@@ -1,3 +1,3 @@
-Tokenien generointi tekstisyötteestä (joko .txt-tiedostona tai komentoriviparametrina)
+Tokenien generointi tekstisyötteestä (joko .txt-tiedostona tai komentoriviparametrina, rivi kerrallaan)
 Abstraktin syntaksipuun generointi token-listasta
-Python-koodin generointi abstraktin syntaksipuun pohjalta
+Java-koodin generointi abstraktin syntaksipuun pohjalta muodostetuista lauseista
