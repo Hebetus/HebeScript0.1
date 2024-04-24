@@ -1,23 +1,23 @@
-<käännösyksikkö> ::= { <asetuslause> | <evaluaatio> | <toistosilmukka> | <tulostus> | päätä_ohjelma } erotin
-                        | { <asetuslause> | <evaluaatio> | <toistosilmukka> | <tulostus> | päätä_ohjelma } erotin <käännösyksikkö>
+<käännösyksikkö> ::= { <asetuslause> | <evaluaatio> | <toistosilmukka> | <tulostus> } erotin
+                        | { <asetuslause> | <evaluaatio> | <toistosilmukka> | <tulostus> } erotin <käännösyksikkö>
 
 <asetuslause> ::= muuttujanimi asetus <muuttujanarvo>
-                    | muuttujanimi asetus muuttujanimi plus muuttujanimi
-                    | muuttujanimi asetus muuttujanimi miinus muuttujanimi
-                    | muuttujanimi asetus muuttujanimi kertaa muuttujanimi
-                    | muuttujanimi asetus muuttujanimi jaettuna muuttujanimi
 
 <muuttujanarvo> ::= luku
                     | merkkijono
                     | totuusarvo
+                    | muuttujanimi plus muuttujanimi
+                    | muuttujanimi miinus muuttujanimi
+                    | muuttujanimi kertaa muuttujanimi
+                    | muuttujanimi jaettuna muuttujanimi
 
-<evaluaatio> ::= jos <evaluaatiolauseke> niin <käännösyksikkö>
+<evaluaatio> ::= jos <evaluaatiolauseke> niin <käännösyksikkö> Mahdollisesti rekursiivisesti ääretön määrä
                 | jos <evaluaatiolauseke> tai <evaluaatio>
                 | jos <evaluaatiolauseke> ja <evaluaatio>
                 | ei <evaluaatio>
 
 
-<evaluaatiolauseke> ::= evaluaatio_auki muuttujanimi suurempi_kuin muuttujanimi evaluaatio_kiinni
+<evaluaatiolauseke> ::= evaluaatio_auki muuttujanimi suurempi_kuin muuttujanimi evaluaatio_kiinni Mahdollisesti ääretön määrä lausekkeita silmukan sisällä
                         | evaluaatio_auki muuttujanimi pienempi_kuin muuttujanimi evaluaatio_kiinni
                         | evaluaatio_auki muuttujanimi yhtäsuuri_kuin muuttujanimi evaluaatio_kiinni
 
@@ -60,10 +60,8 @@ Terminaalisymbolit:                     Lekseemit/tokenit:
     tulosta_auki                            [
     tulosta_kiinni                          ]
 
-    !HUOM! KIELI EI TUE KOMMENTOINTIA KAHDELLA VINOVIIVALLA (//) TAI MUUTENKAAN !HUOM!
-    !HUOM! MUUTTUJIEN NIMEÄMISEEN EI VOI KÄYTTÄÄ ÄÄKKÖSIÄ !HUOM!
+    !HUOM! KIELI EI TUE KOMMENTOINTIA KAHDELLA VINOVIIVALLA (//) TAI MUUTENKAAN
+    !HUOM! MUUTTUJIEN NIMEÄMISEEN EI VOI KÄYTTÄÄ ÄÄKKÖSIÄ
 
     Kääntäjä olettaa lähdekoodin päättyvän tekstitiedoston loppuessa, ei siis
     vaadi ohjelman päättävää terminaalisymbolia
-
-    Kaikki lausekkeet, paitsi tulostus ja negaatio, jotka ovat unaarisia, ovat binäärisiä

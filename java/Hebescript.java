@@ -52,10 +52,22 @@ public class Hebescript {
     private static void run(String source) {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
+        Parser parser = new Parser(tokens);
+        Expr expression = parser.parse();
 
+        if (hadError) {
+            return;
+        }
+
+
+
+        // Tämä koodilohko on tokenien tulostusta varten
+
+        /**
         for (Token token : tokens) {
             System.out.println(token);
         }
+        */
     }
 
     static void error(int line, String message) {
@@ -65,6 +77,15 @@ public class Hebescript {
     private static void report(int line, String where, String message) {
         System.err.println("[line " + line + "] Error" + where + ": " + message);
         hadError = true;
+    }
+
+    static void error(Token token, String message) {
+        if (token.type == TokenType.EOF) {
+            report(token.line, " at end", message);
+        }
+        else {
+            report(token.line, " at '" + token.lexeme + "'", message);
+        }
     }
 }
 
@@ -94,7 +115,11 @@ enum TokenType {
     
     // Tiedoston päättävä token; vastaa päätä_ohjelma-lekseemiä
 
-    EOF
+    EOF,
+
+    // Nil-token, tyhjiä arvoja varten?
+
+    NIL
 }
 
 class Token {
@@ -122,17 +147,6 @@ class Scanner {
     private int start = 0;
     private int current = 0;
     private int line = 1;
-
-    private static final Map<String, TokenType> keywords;
-
-    static {
-        keywords = new HashMap<>();
-        keywords.put("tosi", TokenType.TOSI);
-        keywords.put("epätosi", TokenType.EPÄTOSI);
-        keywords.put("niinkaunkuin", TokenType.TOISTO);
-        keywords.put("päätä_silmukka", TokenType.PAATA_TOISTO);
-        keywords.put("tulosta", TokenType.TULOSTA);
-    }
 
     Scanner(String source) {
         this.source = source;
@@ -327,26 +341,10 @@ class Scanner {
     }
 }
 
-abstract class Expr {
-    static class Binary extends Expr {
-        Binary(Expr left, Token operator, Expr right) {
-            this.left = left;
-            this.operator = operator;
-            this.right = right;
-        }
-
-        final Expr left;
-        final Token operator;
-        final Expr right;
+class AstPrinter implements Expr.Visitor<String> {
+    String print(Expr expr) {
+        return expr.accept(this);
     }
 
-    static class Unary extends Expr {
-        Unary(Expr expr, Token operator) {
-            this.expr = expr;
-            this.operator = operator;
-        }
-
-        final Expr expr;
-        final Token operator;
-    }
+    
 }

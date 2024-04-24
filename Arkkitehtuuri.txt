@@ -1,3 +1,4 @@
-Tokenien generointi tekstisyötteestä (joko .txt-tiedostona tai komentoriviparametrina, rivi kerrallaan)
-Abstraktin syntaksipuun generointi token-listasta
-Java-koodin generointi abstraktin syntaksipuun pohjalta muodostetuista lauseista
+Tokenien generointi tekstisyötteestä (joko .txt-tiedostona tai komentoriviparametrina, rivi kerrallaan), listaksi tokeneita
+Jäsennyspuiden muodostus listasta tokeneita, listaksi jäsennyspuita
+Abstraktin syntaksipuun generointi jäsennyspuista
+Java-koodin generointi abstraktin syntaksipuun pohjalta
