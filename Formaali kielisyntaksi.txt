@@ -62,6 +62,3 @@ Terminaalisymbolit:                     Lekseemit/tokenit:
 
     !HUOM! KIELI EI TUE KOMMENTOINTIA KAHDELLA VINOVIIVALLA (//) TAI MUUTENKAAN
     !HUOM! MUUTTUJIEN NIMEÄMISEEN EI VOI KÄYTTÄÄ ÄÄKKÖSIÄ
-
-    Kääntäjä olettaa lähdekoodin päättyvän tekstitiedoston loppuessa, ei siis
-    vaadi ohjelman päättävää terminaalisymbolia
